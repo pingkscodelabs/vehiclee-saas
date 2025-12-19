@@ -426,3 +426,23 @@
 - [ ] Frontend: Build audit trail view for compliance history
 - [x] Frontend: Write tests for admin approval procedures
 - [x] Mark all completed items as [x] in todo.md
+
+
+---
+
+## Current Sprint: Fleet Management Dashboard
+
+- [x] Extend backend: Implement `admin.getFleetOverview` for dashboard stats
+- [x] Extend backend: Implement `admin.getDevices` with filtering and pagination
+- [x] Extend backend: Implement `admin.getDeviceTelemetry` for real-time metrics
+- [x] Extend backend: Implement `admin.allocateCampaign` to assign campaign to device
+- [x] Extend backend: Implement `admin.deallocateCampaign` to remove campaign from device
+- [x] Extend backend: Implement `admin.getDeviceDetail` with full device information
+- [x] Frontend: Create fleet management page with device list
+- [x] Frontend: Build device detail modal with telemetry display
+- [x] Frontend: Implement campaign allocation form
+- [x] Frontend: Add device status indicators (online, offline, low battery)
+- [x] Frontend: Build fleet overview stats (total devices, online, active campaigns)
+- [x] Frontend: Add real-time telemetry refresh (battery, signal, uptime)
+- [x] Frontend: Write tests for fleet management procedures
+- [x] Mark all completed items as [x] in todo.md

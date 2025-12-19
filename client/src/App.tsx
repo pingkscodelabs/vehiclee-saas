@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import ClientDashboard from "./pages/ClientDashboard";
 import CampaignDetail from "./pages/CampaignDetail";
 import AdminDashboard from "./pages/AdminDashboard";
+import FleetManagement from "./pages/FleetManagement";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -17,6 +18,7 @@ function Router() {
       <Route path={"/client"} component={ClientDashboard} />
       <Route path={"/client/campaigns/:id"} component={CampaignDetail} />
       <Route path={"/admin"} component={AdminDashboard} />
+      <Route path={"/admin/fleet"} component={FleetManagement} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

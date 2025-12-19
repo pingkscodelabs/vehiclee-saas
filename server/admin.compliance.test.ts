@@ -37,8 +37,11 @@ describe("admin.compliance procedures", () => {
   let testCreativeId: number;
   let testComplianceQueueId: number;
   let testClientProfileId: number;
+  let testCounter = 0;
 
   beforeEach(async () => {
+    testCounter++;
+    const timestamp = Math.floor(Date.now() / 1000) + testCounter;
     const db = await getDb();
     if (!db) throw new Error("Database not available");
 
@@ -48,9 +51,9 @@ describe("admin.compliance procedures", () => {
     await db.delete(campaigns).where(eq(campaigns.id, testCampaignId || 0));
     await db.delete(clientProfiles).where(eq(clientProfiles.id, testClientProfileId || 0));
 
-    // Create test client profile
+    // Create test client profile with unique userId
     const profileResult = await db.insert(clientProfiles).values({
-      userId: 2,
+      userId: timestamp,
       companyName: "Test Company",
       companyCountry: "NL",
       walletBalance: 100000,

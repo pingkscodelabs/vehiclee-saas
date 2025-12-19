@@ -5,6 +5,7 @@ import { publicProcedure, router, protectedProcedure } from "./_core/trpc";
 import { z } from "zod";
 import { eq } from "drizzle-orm";
 import { adminRouter } from "./routers/admin";
+import { fleetRouter } from "./routers/fleet";
 import {
   getClientProfile,
   getClientCampaigns,
@@ -288,6 +289,7 @@ export const appRouter = router({
   }),
 
   adminApp: adminRouter,
+  fleetApp: fleetRouter,
 });
 
 export type AppRouter = typeof appRouter;
