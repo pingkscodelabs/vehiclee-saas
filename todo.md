@@ -389,3 +389,21 @@
 - **Payout Automation:** Limited to simple formula + manual review; full automation in Phase 2
 - **Support:** Ticketing only; real-time chat moves to Phase 2
 
+
+---
+
+## Current Sprint: Client Campaign Creation UI
+
+- [x] Extend backend: Complete `client.createCampaign` procedure
+- [x] Extend backend: Implement `client.uploadAsset` for S3 upload
+- [x] Extend backend: Implement `client.submitCreative` for approval
+- [x] Extend backend: Implement `client.getCampaignDetail` with creative status
+- [x] Extend backend: Implement `client.approveCreative` for client approval
+- [x] Frontend: Create client dashboard layout with navigation
+- [x] Frontend: Build campaign list view with status badges
+- [x] Frontend: Build campaign creation form modal
+- [x] Frontend: Implement creative upload component with preview
+- [x] Frontend: Build campaign detail view with approval workflow
+- [x] Frontend: Add wallet balance display
+- [x] Frontend: Write tests for campaign creation flow
+- [x] Mark all completed items as [x] in todo.md
