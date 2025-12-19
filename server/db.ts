@@ -1,6 +1,24 @@
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users } from "../drizzle/schema";
+import {
+  InsertUser,
+  users,
+  clientProfiles,
+  driverProfiles,
+  vehicles,
+  devices,
+  campaigns,
+  creatives,
+  campaignAllocations,
+  walletLedger,
+  invoices,
+  payouts,
+  complianceQueue,
+  supportTickets,
+  auditLog,
+  zones,
+  deviceTelemetry,
+} from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -89,4 +107,104 @@ export async function getUserByOpenId(openId: string) {
   return result.length > 0 ? result[0] : undefined;
 }
 
-// TODO: add feature queries here as your schema grows.
+export async function getUserById(id: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(users).where(eq(users.id, id)).limit(1);
+  return result[0];
+}
+
+// Client queries
+export async function getClientProfile(userId: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(clientProfiles).where(eq(clientProfiles.userId, userId)).limit(1);
+  return result[0];
+}
+
+export async function getClientCampaigns(clientId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(campaigns).where(eq(campaigns.clientId, clientId));
+}
+
+export async function getWalletBalance(clientId: number) {
+  const db = await getDb();
+  if (!db) return 0;
+  const profile = await db.select().from(clientProfiles).where(eq(clientProfiles.id, clientId)).limit(1);
+  return profile[0]?.walletBalance ?? 0;
+}
+
+// Driver queries
+export async function getDriverProfile(userId: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(driverProfiles).where(eq(driverProfiles.userId, userId)).limit(1);
+  return result[0];
+}
+
+export async function getDriverVehicles(driverId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(vehicles).where(eq(vehicles.driverId, driverId));
+}
+
+export async function getDeviceByVehicle(vehicleId: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(devices).where(eq(devices.vehicleId, vehicleId)).limit(1);
+  return result[0];
+}
+
+// Device queries
+export async function getDeviceStatus(deviceId: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(devices).where(eq(devices.deviceId, deviceId)).limit(1);
+  return result[0];
+}
+
+// Compliance queries
+export async function getComplianceQueue(status?: string) {
+  const db = await getDb();
+  if (!db) return [];
+  if (status) {
+    return db.select().from(complianceQueue).where(eq(complianceQueue.status, status as any));
+  }
+  return db.select().from(complianceQueue);
+}
+
+// Payout queries
+export async function getDriverPayouts(driverId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(payouts).where(eq(payouts.driverId, driverId));
+}
+
+// Support ticket queries
+export async function getUserTickets(userId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(supportTickets).where(eq(supportTickets.userId, userId));
+}
+
+// Audit log
+export async function createAuditLog(
+  userId: number | null,
+  action: string,
+  entityType: string | null,
+  entityId: number | null,
+  changes: Record<string, unknown> | null,
+  reason: string | null
+) {
+  const db = await getDb();
+  if (!db) return;
+  await db.insert(auditLog).values({
+    userId,
+    action,
+    entityType,
+    entityId,
+    changes,
+    reason,
+  });
+}
