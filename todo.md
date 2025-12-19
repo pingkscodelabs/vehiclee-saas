@@ -407,3 +407,22 @@
 - [x] Frontend: Add wallet balance display
 - [x] Frontend: Write tests for campaign creation flow
 - [x] Mark all completed items as [x] in todo.md
+
+
+---
+
+## Current Sprint: Admin Compliance Dashboard
+
+- [x] Extend backend: Implement `admin.getComplianceQueue` with filters and pagination
+- [x] Extend backend: Implement `admin.reviewCreative` for approval/rejection
+- [x] Extend backend: Implement `admin.approveCampaign` to activate campaign
+- [x] Extend backend: Implement `admin.rejectCampaign` with reason tracking
+- [x] Extend backend: Implement `admin.getComplianceStats` for dashboard overview
+- [x] Frontend: Create admin dashboard layout with sidebar navigation
+- [x] Frontend: Build compliance queue list with filtering (status, date, client)
+- [x] Frontend: Build creative preview modal with full details
+- [x] Frontend: Implement approval/rejection form with reason input
+- [x] Frontend: Add compliance stats cards (pending, approved, rejected)
+- [ ] Frontend: Build audit trail view for compliance history
+- [x] Frontend: Write tests for admin approval procedures
+- [x] Mark all completed items as [x] in todo.md

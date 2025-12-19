@@ -4,6 +4,7 @@ import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router, protectedProcedure } from "./_core/trpc";
 import { z } from "zod";
 import { eq } from "drizzle-orm";
+import { adminRouter } from "./routers/admin";
 import {
   getClientProfile,
   getClientCampaigns,
@@ -286,21 +287,7 @@ export const appRouter = router({
     }),
   }),
 
-  adminApp: router({
-    getComplianceQueue: protectedProcedure
-      .input(z.object({ status: z.string().optional() }).optional())
-      .query(async ({ ctx, input }) => {
-        ensureRole(ctx, "admin");
-        return getComplianceQueue(input?.status);
-      }),
-
-    getTickets: protectedProcedure.query(async ({ ctx }) => {
-      ensureRole(ctx, "admin");
-      const db = await getDb();
-      if (!db) return [];
-      return db.select().from(supportTickets);
-    }),
-  }),
+  adminApp: adminRouter,
 });
 
 export type AppRouter = typeof appRouter;
