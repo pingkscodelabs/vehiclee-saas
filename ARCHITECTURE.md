@@ -1,6 +1,6 @@
 # Vehiclee-PaperAdsSaaS: Technical Architecture & Design
 
-**Author:** Manus AI  
+**Author:** Kashif Shoukat 
 **Date:** December 2025  
 **Project:** Vehiclee - Paper Ads SaaS Platform  
 **Phase:** Pilot MVP (Weeks 1-4)
