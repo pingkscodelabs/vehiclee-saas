@@ -1,6 +1,6 @@
 # Vehiclee-PaperAdsSaaS: UI/UX Design Document
 
-**Author:** Manus AI  
+**Author:** Kashif Shoukat 
 **Date:** December 2025  
 **Phase:** Pilot MVP  
 **Design System:** Tailwind CSS 4 + shadcn/ui
